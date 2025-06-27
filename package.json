@@ -1,0 +1,99 @@
+{
+  "name": "nevaCode-coding-agent",
+  "displayName": "NexaCode Coding Agent #1 AI agent",
+  "description": "NexaCode Coding Agent with web search, file search and code editing for refactor, debug, data analysis, data science",
+  "version": "1.0.0",
+  "publisher": "ThomasYIu0447",
+  "icon": "images/icon.png",
+  "repository": "https://github.com/tomtyiu/ai-codegpt-tutor",
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "categories": [
+    "AI",
+    "Programming Languages",
+    "Machine Learning",
+    "Education"
+  ],
+  "activationEvents": [
+    "onCommand:openaiAgent.run"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "openaiAgent.run",
+        "title": "Run OpenAI Agent"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "AI OpenAI Agent Settings",
+      "properties": {
+        "openaiAgent.openaiKey": {
+          "type": "string",
+          "description": "Your OpenAI API key"
+        },
+        "openaiAgent.openaiModel": {
+          "type": "string",
+          "default": "gpt-4.1",
+          "enum": [
+            "gpt-4.1",
+            "o3-pro",
+            "o4-mini"
+          ],
+          "description": "OpenAI model to use for code annotation (choose from: gpt-4.1, gpt-4.1-mini, gpt-4.1-nano)."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "openai-agent-sidebar",
+          "title": "NexaCode Agent",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "openai-agent-sidebar": [
+        {
+          "id": "openaiAgent.chat",
+          "name": "Chat",
+          "type": "webview"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.7",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.101.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2",
+    "debug": "^4.3.4",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3",
+    "vscode-languageclient": "^9.0.0",
+    "vscode-languageserver": "^9.0.0"
+  },
+  "dependencies": {
+    "@openai/agents": "^0.0.10",
+    "@openai/agents-core": "^0.0.10",
+    "@openai/agents-realtime": "^0.0.10",
+    "@vscode/extension-telemetry": "^1.0.0",
+    "debug": "4.4.1",
+    "openai": "^5.7.0"
+  }
+}
